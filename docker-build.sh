@@ -10,4 +10,4 @@ while getopts ":c" opt; do
     esac
 done
 
-docker build $PARAMS -t rahti-backup .
+docker build $PARAMS -t swift-backup .

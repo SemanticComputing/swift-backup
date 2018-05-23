@@ -8,7 +8,7 @@ usage() { echo "$0 <OS_STORAGE_URL> <vol-data> <BACKUP_NAME>"; }
 # Use this only for running individual containers locally
 # On cpouta use docker-compose
 
-IMAGE_NAME="rahti-backup"
+IMAGE_NAME="swift-backup"
 CONTAINER_NAME="$IMAGE_NAME"
 IP="172.30.23.66"
 NETWORK="seco"
