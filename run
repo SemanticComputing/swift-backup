@@ -3,13 +3,13 @@
 
 echoerr() { echo "$@" 1>&2; }
 
-[ ! -z "$BACKUP_NAME" ]           || { echoerr "BACKUP_NAME not defined"; exit 1; }
-[ ! -z "$OS_AUTH_TOKEN" ]         || { echoerr "OS_AUTH_TOKEN not defined"; exit 1; }
-[ ! -z "$OS_STORAGE_URL" ]        || { echoerr "OS_STORAGE_URL not defined"; exit 1; }
-[ -r "$PATH_BACKUP_SOURCE" ]    || { echoerr "Cannot read $PATH_BACKUP_SOURCE; Check that the volume/folder is mounted that it can be read"; exit 1; }
-[ -w $PATH_BACKUP ]             || { echoerr "Cannot write to $PATH_BACKUP"; exit 1; }
+[ ! -z "$BACKUP_NAME" ]             || { echoerr "BACKUP_NAME not defined"; exit 1; }
+[ ! -z "$OS_AUTH_TOKEN" ]           || { echoerr "OS_AUTH_TOKEN not defined"; exit 1; }
+[ ! -z "$OS_STORAGE_URL" ]          || { echoerr "OS_STORAGE_URL not defined"; exit 1; }
+[ -r "$PATH_BACKUP_SOURCE" ]        || { echoerr "Cannot read $PATH_BACKUP_SOURCE; Check that the volume/folder is mounted that it can be read"; exit 1; }
+[ -w $PATH_BACKUP ]                 || { echoerr "Cannot write to $PATH_BACKUP"; exit 1; }
 
-if [ -z $BACKUP_PASSWORD ]; then
+if [ ! -z $BACKUP_PASSWORD ]; then
     BASENAME_BACKUP="$BACKUP_NAME.tar.gpg"
     FILE_BACKUP="$PATH_BACKUP/$BASENAME_BACKUP"
     CMD_TAR="tar -cz \"$PATH_BACKUP_SOURCE\" | gpg2 -c --batch -o \"$FILE_BACKUP\" --passphrase-fd 0"
